@@ -20,6 +20,12 @@ function ensureSlash(path, needsSlash) {
   }
 }
 
+try {
+  require('os').networkInterfaces();
+} catch(e) {
+  require('os').networkInterfaces = () => ({});
+}
+
 // We use "homepage" field to infer "public path" at which the app is served.
 // Webpack needs to know it to put the right <script> hrefs into HTML even in
 // single-page apps that may serve index.html for nested URLs like /todos/42.
